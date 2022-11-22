@@ -55,12 +55,12 @@ def send_message(bot, message):
         )
 
 
-def get_api_answer(current_timestamp: int) -> dict:
+def get_api_answer(timestamp: int) -> dict:
     """Получает ответ от API Яндекс.Практикума."""
-    timestamp = current_timestamp or int(time.time())
-    params = {'from_date': timestamp}
+    current_timestamp = timestamp or int(time.time())
+    params = {'from_date': current_timestamp}
     try:
-        response = requests.get(ENDPOINT, headers=HEADERS, params=params)
+        response = requests.get(url=ENDPOINT, headers=HEADERS, params=params)
         if response.status_code != HTTPStatus.OK:
             api_error = (
                 f'Эндпоинт {ENDPOINT} недоступен!'
