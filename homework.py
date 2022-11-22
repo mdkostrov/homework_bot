@@ -71,7 +71,8 @@ def get_api_answer(current_timestamp: int) -> dict:
         return response.json()
     except requests.exceptions.RequestException as request_error:
         api_error = (
-            f'Ошибка запроса (RequestException). Код ответа API: {request_error}'
+            f'Ошибка запроса (RequestException).'
+            f'Код ответа API: {request_error}'
         )
         logger.error(api_error)
         raise RequestError(api_error) from request_error
@@ -81,7 +82,6 @@ def get_api_answer(current_timestamp: int) -> dict:
         )
         logger.error(api_error)
         raise json.JSONDecodeError(api_error) from value_error
-
 
 
 def check_response(response: dict) -> list:
@@ -127,7 +127,8 @@ def parse_status(homework: dict) -> str:
         raise UndocumentedStatusError(error_message)
     if homework_status not in HOMEWORK_VERDICTS:
         error_message = (
-            f'Ошибка: незадокументированный статус домашней работы {homework_status}'
+            f'Ошибка: незадокументированный статус'
+            f'домашней работы {homework_status}'
         )
         logger.error(error_message)
         raise UndocumentedStatusError(error_message)
