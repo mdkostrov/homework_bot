@@ -47,15 +47,13 @@ logger.addHandler(
 def send_message(bot, message):
     """Отправляет сообщение в Телеграм."""
     try:
-        logger.debug(
-            'Попытка отправить сообщение в Telegram.')
+        logger.debug('Попытка отправить сообщение в Telegram.')
         bot.send_message(TELEGRAM_CHAT_ID, message)
-        logger.debug(
-            f'Сообщение в Telegram отправлено: {message}')
-    except telegram.TelegramError as tg_error:
-        raise telegram.TelegramError(
-            f'Ошибка отправки сообщения в Telegram. {tg_error}'
-        ) from tg_error
+        logger.debug(f'Сообщение в Telegram отправлено: {message}')
+    except telegram.error.TelegramError as tg_error:
+        error_message = f'Ошибка отправки сообщения: {tg_error}'
+        logger.error(error_message) # без логгирования здесь тесты не проходят
+        raise telegram.error.TelegramError from tg_error
 
 
 def get_api_answer(timestamp: int) -> dict:
