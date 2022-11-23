@@ -48,7 +48,7 @@ def send_message(bot, message):
     """Отправляет сообщение в Телеграм."""
     try:
         logger.debug(
-            f'Попытка отправить сообщение в Telegram.')
+            'Попытка отправить сообщение в Telegram.')
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logger.debug(
             f'Сообщение в Telegram отправлено: {message}')
@@ -93,7 +93,7 @@ def check_response(response: dict) -> list:
         raise TypeError(error_message)
     homeworks = response.get('homeworks')
     api_keys = list(response.keys())
-    if not 'homeworks' in api_keys or not 'current_date' in api_keys:
+    if 'homeworks' not in api_keys or 'current_date' not in api_keys:
         error_message = (
             'Отсутствуют ключи homeworks или current_date '
             'в полученном словаре'
@@ -111,17 +111,17 @@ def parse_status(homework: dict) -> str:
     """Извлекает из ответа API статус домашней работы."""
     homework_name = homework.get('homework_name')
     homework_status = homework.get('status')
-    if not 'homework_name' in homework:
+    if 'homework_name' not in homework:
         error_message = (
             f'Ошибка: отсутствует ключ homework_name: {homework_name}'
         )
         raise UndocumentedStatusError(error_message)
-    if not 'status' in homework:
+    if 'status' not in homework:
         error_message = (
             f'Ошибка: отсутствует ключ status: {homework_status}'
         )
         raise UndocumentedStatusError(error_message)
-    if not homework_status in HOMEWORK_VERDICTS:
+    if homework_status not in HOMEWORK_VERDICTS:
         error_message = (
             f'Ошибка: незадокументированный статус'
             f'домашней работы: {homework_status}'
