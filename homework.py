@@ -52,7 +52,7 @@ def send_message(bot, message):
         logger.debug(f'Сообщение в Telegram отправлено: {message}')
     except telegram.error.TelegramError as tg_error:
         error_message = f'Ошибка отправки сообщения: {tg_error}'
-        logger.error(error_message) # без логгирования здесь тесты не проходят
+        logger.error(error_message)  # без логгирования здесь тесты не проходят
         raise telegram.error.TelegramError from tg_error
 
 
