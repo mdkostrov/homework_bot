@@ -61,6 +61,7 @@ def get_api_answer(timestamp: int) -> dict:
     current_timestamp = timestamp or int(time.time())
     params = {'from_date': current_timestamp}
     try:
+        logger.debug('Попытка получения ответа от API Яндекс.Практикум.')
         response = requests.get(url=ENDPOINT, headers=HEADERS, params=params)
         if response.status_code != HTTPStatus.OK:
             api_error = (
@@ -90,8 +91,7 @@ def check_response(response: dict) -> list:
         )
         raise TypeError(error_message)
     homeworks = response.get('homeworks')
-    api_keys = list(response.keys())
-    if 'homeworks' not in api_keys or 'current_date' not in api_keys:
+    if 'homeworks' not in response or 'current_date' not in response:
         error_message = (
             'Отсутствуют ключи homeworks или current_date '
             'в полученном словаре'
