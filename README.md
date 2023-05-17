@@ -54,7 +54,7 @@ nano .env
 Пример заполнения:
 
 ```
-PRACTICUM_TOKEN = <токен вашей учетной записи Яндекс.Практикума, получить можно по ссылке https://oauth.yandex.ru/authorize?response_type=token&client_id=1d0b9dd4d652455a9eb710d450ff456a>
+PRACTICUM_TOKEN = <токен вашей учетной записи Яндекс.Практикума>
 TELEGRAM_TOKEN = <токен вашего бота в Telegram>
 TELEGRAM_CHAT_ID = <id чата, куда придет сообщение>
 ```
