@@ -46,7 +46,7 @@ pip install -r requirements.txt
 touch .env
 ```
 
-Заполнить его переменными:
+Заполнить его переменными (вручную или с помощью редактора nano):
 
 ```
 nano .env
